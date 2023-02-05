@@ -1,0 +1,56 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: emqx-wss
+  namespace: home
+spec:
+  entryPoints:
+    - wss
+  routes:
+    - match: HostSNI(`emqx-ws.${XYZ_DOMAIN}`)
+      services:
+        - name: emqx
+          port: 8083
+      middlewares:
+        - name: networking-rfc1918-tcp@kubernetescrd
+  tls:
+    secretName: tls.${XYZ_DOMAIN/./-}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: emqx-mqtt
+  namespace: home
+spec:
+  entryPoints:
+    - mqtts
+  routes:
+    - match: HostSNI(`mqtt.${XYZ_DOMAIN}`)
+      services:
+        - name: emqx
+          port: 1883
+      middlewares:
+        - name: networking-rfc1918-tcp@kubernetescrd
+  tls:
+    secretName: tls.${XYZ_DOMAIN/./-}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: emqx-dashboard
+  namespace: home
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`emqx.${XYZ_DOMAIN}`)
+      kind: Rule
+      services:
+        - name: emqx
+          kind: Service
+          port: 18083
+      middlewares:
+        - name: networking-bloopnet-xyz-auth@kubernetescrd
+  tls:
+    secretName: tls.${XYZ_DOMAIN/./-}

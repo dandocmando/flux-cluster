@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    k8s-app: ${CLASSIC_DOMAIN}
+  name: classic-traefik
+  namespace: networking
+spec:
+  type: ExternalName
+  ports:
+    - name: https
+      protocol: TCP
+      port: 8443
+      targetPort: 8443
+    - port: 8084
+      name: http
+      protocol: TCP
+    - port: 9001
+      name: mqtt-websockets
+      protocol: TCP
+  externalName: ${LB_V4_TRAEFIK_CLASSIC}
+  selector:
+    app.kubernetes.io/instance: classic-traefik
+    app.kubernetes.io/name: classic-traefik

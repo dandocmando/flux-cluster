@@ -1,0 +1,28 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: xyz-auth
+  namespace: networking
+spec:
+  chain:
+    middlewares:
+      # Note this requires cloudflare proxy
+      # - name: cloudflare-ips
+      - name: networking-secure-headers@kubernetescrd
+      - name: networking-rate-limit@kubernetescrd
+      - name: auth-ak-outpost-traefik-default-xyz@kubernetescrd
+      - name: networking-error-pages@kubernetescrd
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: bloopnet-xyz-auth
+  namespace: networking
+spec:
+  chain:
+    middlewares:
+      - name: networking-secure-headers@kubernetescrd
+      - name: networking-rate-limit@kubernetescrd
+      - name: auth-ak-outpost-bloopnet-xyz@kubernetescrd
+      - name: networking-error-pages@kubernetescrd

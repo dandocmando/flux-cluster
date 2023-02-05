@@ -1,0 +1,31 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: home-assistant
+  namespace: home
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure,wss
+    traefik.ingress.kubernetes.io/router.middlewares: networking-chain-no-auth@kubernetescrd
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    hajimari.io/appName: home-assistant
+    hajimari.io/instance: bloop-xyz
+    hajimari.io/enable: "true"
+    hajimari.io/icon: home-assistant
+
+spec:
+  rules:
+    - host: &host home-assistant.${XYZ_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: home-assistant
+                port:
+                  number: 8123
+  tls:
+    - secretName: tls.home-assistant
+      hosts:
+        - *host

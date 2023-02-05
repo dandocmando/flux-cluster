@@ -1,0 +1,48 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: classic-traefik
+  namespace: networking
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: HostSNI(`bloopnet.${CLASSIC_DOMAIN}`)
+      services:
+        - name: classic-traefik
+          port: 8443
+    - match: HostSNI(`traefik.bloopnet.${CLASSIC_DOMAIN}`)
+      services:
+        - name: classic-traefik
+          port: 8443
+    - match: HostSNI(`ombi.bloopnet.${CLASSIC_DOMAIN}`)
+      services:
+        - name: classic-traefik
+          port: 8443
+    - match: HostSNI(`portainer.bloopnet.${CLASSIC_DOMAIN}`)
+      services:
+        - name: classic-traefik
+          port: 8443
+    - match: HostSNI(`oauth.bloopnet.${CLASSIC_DOMAIN}`)
+      services:
+        - name: classic-traefik
+          port: 8443
+    - match: HostSNI(`hydra.bloopnet.${CLASSIC_DOMAIN}`)
+      services:
+        - name: classic-traefik
+          port: 8443
+    - match: HostSNI(`pihole.bloopnet.${CLASSIC_DOMAIN}`)
+      services:
+        - name: classic-traefik
+          port: 8443
+    - match: HostSNI(`wishlist.bloopnet.${CLASSIC_DOMAIN}`)
+      services:
+        - name: classic-traefik
+          port: 8443
+    - match: HostSNI(`heimdall.bloopnet.${CLASSIC_DOMAIN}`)
+      services:
+        - name: classic-traefik
+          port: 8443
+  tls:
+    passthrough: true

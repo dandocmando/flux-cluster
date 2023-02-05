@@ -1,0 +1,20 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - cloudflare.yaml
+  - rfc1918.yaml
+  - redirect-path.yaml
+  - forward-auth.yaml
+  - rate-limit.yaml
+  - keycloak-forward-auth.yaml
+  - bloopnet-xyz-auth.yaml
+  - plex-add-web.yaml
+  - calibre-auth.yaml
+  - secure-headers.yaml
+  - chain-no-auth.yaml
+  - error-pages.yaml
+  - chain-no-epages.yaml
+  - ghost-admin-add-prefix.yaml
+  - chain-ghost-admin.yaml
+  - internal-only-auth.yaml
