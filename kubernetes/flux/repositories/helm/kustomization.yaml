@@ -14,4 +14,5 @@ resources:
   - ./metrics-server.yaml
   - ./stakater.yaml
   - ./weave-gitops.yaml
-  - ./traefik.yaml
+  - ./openebs.yaml
+  #-./traefik.yaml
