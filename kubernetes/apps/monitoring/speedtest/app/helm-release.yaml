@@ -39,17 +39,16 @@ spec:
         ports:
           http:
             port: 80
-        ipFamilyPolicy: PreferDualStack
+        #ipFamilyPolicy: PreferDualStack
     ingress:
       main:
         enabled: true
         ingressClassName: nginx
         annotations:
-          external-dns.home.arpa/enabled: "true"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: mdi:speedometer
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          #hajimari.io/icon: video-input-antenna
         hosts:
-          - host: &host speedtest.${CLUSTER_DOMAIN}
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
