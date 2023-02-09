@@ -22,16 +22,6 @@ spec:
       reclaimPolicy: Delete
       recurringJobSelector:
         enable: false
-    defaultSettings:
-      storageOverProvisioningPercentage: 100
-      storageMinimalAvailablePercentage: 10
-      nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
-      restoreVolumeRecurringJobs: true
-      defaultLonghornStaticStorageClass: longhorn-backup
-      concurrentAutomaticEngineUpgradePerNodeLimit: 1
-      orphanAutoDeletion: true
-      backupstorePollInterval: 300
-      backupTarget: nfs://${NFS_SERVER_ADDR}:${NFS_SERVER_PATH}/longhorn_backup
     ingress:
       main:
         enabled: true
@@ -48,3 +38,13 @@ spec:
         tls:
           - hosts:
               - *host
+    defaultSettings:
+      storageOverProvisioningPercentage: 100
+      storageMinimalAvailablePercentage: 10
+      nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
+      restoreVolumeRecurringJobs: true
+      defaultLonghornStaticStorageClass: longhorn-backup
+      concurrentAutomaticEngineUpgradePerNodeLimit: 1
+      orphanAutoDeletion: true
+      backupstorePollInterval: 300
+      backupTarget: nfs://${NFS_SERVER_ADDR}:${NFS_SERVER_PATH}/longhorn_backup
