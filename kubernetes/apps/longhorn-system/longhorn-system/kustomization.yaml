@@ -7,4 +7,4 @@ resources:
   #- recurringjobs-release.yaml
   - service-monitor.yaml
   #- prometheus-rules.yaml
-  - ingress.yaml
+  #- ingress.yaml
