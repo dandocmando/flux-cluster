@@ -5,6 +5,6 @@ resources:
   - helm-release.yaml
   - storageclass.yaml
   #- recurringjobs-release.yaml
-  - service-monitor.yaml
+  #- service-monitor.yaml
   #- prometheus-rules.yaml
   #- ingress.yaml
