@@ -15,4 +15,5 @@ resources:
   - ./stakater.yaml
   - ./weave-gitops.yaml
   - ./openebs.yaml
+  - ./longhorn.yaml
   #-./traefik.yaml
