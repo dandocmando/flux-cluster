@@ -4,19 +4,3 @@ kind: Kustomization
 resources:
    - ./radarr
    - ./namespace.yaml
-  # - ./priority-class.yaml
-  # - ./media-pv
-  # - ./plex
-  # - ./books/calibre
-  # - ./books/calibre-web
-  # - ./books/lazylibrarian
-  # - ./books/readarr-audio
-  # - ./books/readarr
-  # - ./books/mylar
-  # - ./bazarr
-  # - ./lidarr
-  # - ./tdarr
-  # - ./sonarr
-  # - ./overseer
-  # - ./prowlarr
-  # - ./tautulli
