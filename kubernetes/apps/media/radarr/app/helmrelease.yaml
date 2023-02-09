@@ -60,15 +60,15 @@ spec:
           snapshot.home.arpa/enabled: "true"
     persistence:
       downloads:
-        enabled: true
+        enabled: false
         existingClaim: pvc-downloads
         mountPath: /downloads
       movies:
-        enabled: true
+        enabled: false
         existingClaim: pvc-movies
         mountPath: /movies
       tv:
-        enabled: true
+        enabled: false
         existingClaim: pvc-tv
         mountPath: /tv
     resources:
